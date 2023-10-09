@@ -19,6 +19,7 @@ export class Form extends Component {
 
     handeSubmit = (event) => {
         event.preventDefault()
+
         if (this.state.number && this.state.name) {
             this.props.setContacts(this.state.name, this.state.number)
             this.setState({

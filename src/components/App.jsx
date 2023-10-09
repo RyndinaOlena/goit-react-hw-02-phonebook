@@ -12,7 +12,9 @@ export class App extends Component {
     filter: '',
   }
   setContacts = (name, number) => {
-    console.log(this.state.contacts.length)
+    if (this.state.contacts.some(contact => contact.name === name)) {
+      return
+    }
     this.setState({
       contacts: [...this.state.contacts, { name, number, id: nanoid() }],
 
@@ -32,7 +34,6 @@ export class App extends Component {
   componentDidUpdate(prevProps, prevState,) {
     if (this.state.contacts.length !== prevState.contacts.length) {
       const allContacsLocalStorige = JSON.stringify(this.state.contacts);
-      console.log(allContacsLocalStorige)
       localStorage.setItem('contact', allContacsLocalStorige)
     }
   }
